@@ -1,0 +1,162 @@
+                                                        <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>京东(JD.COM)-正品低价、品质保障、配送及时、轻松购物！</title>
+	<link rel="icon" href="//www.jd.com/favicon.ico" mce_href="//www.jd.com/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" type="image/x-icon" href="images/京东.png" />
+	<style>
+        *{
+        	
+        	margin: 0;
+        	padding: 0;
+        }
+        body{
+          padding: 20px 100px;
+        }
+        .wrapper{
+   
+        	position: relative;
+        	/*background: red;*/
+        	   border: 1px solid #ccc;
+        }
+        .picture{
+        	margin-bottom: 10px;
+         }
+        .picture,.img1{
+        	width: 350px;
+        	height: 449px;
+        }
+        ul{
+        	list-style:none;  
+        	width: 348px;
+        	height: 68px;
+        	/*	overflow: hidden; */
+        /*	display: inline-block;*/ 
+        	position: absolute;
+        	top: 460px;
+        	left: 0;
+        	padding: 2px;
+        }
+        ul>li{
+        	float: left;
+        	margin: 2px;
+        	width: 54px;
+        	height: 68px;
+        }
+        li:hover .img2{
+
+        	border: 2px solid red;
+        }
+        .img2{
+        	width:54px;
+        	height: 68px;
+        	border:2px solid white;
+        }
+      /*  .left{
+          position: absolute;
+          top: 20px;
+          left: 100px;
+        }*/
+        .big{
+        	width:540px;
+        	height:540px;
+        	position: absolute;
+        	left: 370px;
+        	overflow: hidden;
+        	top: 0;
+        	display: none;
+        }
+        .glass{
+        	width: 236px;
+        	height: 236px;
+        	background:rgb(214,182,91);
+        	position: absolute;       	
+        	display: none;  
+        	  filter: alpha(opacity=50);
+            opacity: 0.5;      
+        }
+	</style>
+</head>
+<body>
+ <div class="wrapper">
+  <div class="left">
+ <div class="picture">
+<div class="glass"></div>
+ <img class="img1" src="images/59e2049bN9532da1c.jpg!cc_350x449.jpg" alt="">
+      
+ </div>
+
+ <div class="big"><img class="img3" src="images/59e2049bN9532da1c.jpg!cc_800x1026.jpg" alt="">
+ </div>
+ <div class="swiper">
+ 	
+ 	<ul>
+ 		<li><img class="img2" src="images/59e2049bN9532da1c.jpg!cc_50x64.jpg" alt=""></li>
+ 		<li><img class="img2" src="images/59e2049eN93237a56.jpg!cc_50x64.jpg" alt=""></li>
+ 		<li><img class="img2" src="images/59e204a0Ne49550c6.jpg!cc_50x64.jpg" alt=""></li>
+ 		<li><img class="img2" src="images/59e204a2N75da068c.jpg!cc_50x64.jpg" alt=""></li>
+ 		<li><img class="img2" src="images/59e204a4N496183aa.jpg!cc_50x64.jpg" alt=""></li>
+ 		<li><img class="img2" src="images/59e204a6N490e563d.jpg!cc_50x64.jpg" alt=""></li>
+ 	
+ 	</ul>
+  <!--   <i>&lt;</i>
+ 	<i>&gt;</i> -->
+ </div>
+  </div>
+  <div class="right"></div>
+</div>
+<script>
+	var left=document.querySelector('.left');
+	var img1=document.querySelector('.img1');
+	var big=document.querySelector('.big');
+	var img3=document.querySelector('.img3');
+	var list =document.querySelectorAll('li');
+	var glass=document.querySelector('.glass');
+	var picture=document.querySelector('.picture');
+	for( var i=0;i<list.length;i++){
+		path(i);
+	};
+
+	function path(i){
+		list[i].addEventListener("mouseover",function(e){
+// console.log(i);
+//通过事件监听获得当前DOM 通过getAttribute() 方法返回指定属性名的属性值。 
+       var x=e.target.getAttribute("src");
+// 修改成功之后 
+       var y=x.replace(/50x64/,"350x449");
+// var y=x.replace("50x64","350x449");
+        var  z=x.replace(/50x64/,"800x1026");
+  img1.setAttribute("src",y);
+  img3.setAttribute("src",z);
+});
+	} 
+  picture.onmouseover=function(){
+     big.style.display="block";
+     glass.style.display="block";
+     	picture.onmousemove=function(e){ 
+     //118是放大镜的一半    		
+           var x1=e.clientX - left.offsetLeft - 118-100;
+           var y1=e.clientY - left.offsetTop - 118-20;
+         e.stopPropagation()  
+           if(x1<0){x1=0;}else if(x1>114){x1=114;};
+           if(y1<0){y1=0;}else if(y1>213){y1=213;};
+           	glass.style.left=x1+'px';
+           glass.style.top=y1+'px';
+             console.log(x1,y1);
+           	img3.style.marginLeft=-(x1*800/350)+'px';
+		    img3.style.marginTop=-(y1*800/350)+'px';  
+		               // event.stopPropagation() 
+}
+  }
+
+  picture.onmouseout=function(){
+  	   big.style.display="none";
+     glass.style.display="none";
+  }
+
+
+
+</script>
+</body>
+</html>
